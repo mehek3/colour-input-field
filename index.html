@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Input Field</title>
+  <style>
+    .color-preview {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #ccc;
+    }
+    .error-message {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Input Field</h1>
+  <input type="text" id="color-input" placeholder="#FFFFFF" maxlength="7">
+  <div id="color-preview" class="color-preview"></div>
+  <p id="error-message" class="error-message"></p>
+
+  <script>
+    const colorInput = document.getElementById('color-input');
+    const colorPreview = document.getElementById('color-preview');
+    const errorMessage = document.getElementById('error-message');
+
+    colorInput.addEventListener('input', (event) => {
+      const inputValue = event.target.value.trim();
+
+      if (inputValue.length === 0) {
+        colorPreview.style.backgroundColor = '';
+        errorMessage.textContent = '';
+        return;
+      }
+
+      if (inputValue.length !== 7 || !inputValue.startsWith('#')) {
+        colorPreview.style.backgroundColor = '';
+        errorMessage.textContent = 'Invalid HEX color code.';
+        return;
+      }
+
+      colorPreview.style.backgroundColor = inputValue;
+      errorMessage.textContent = '';
+    });
+  </script>
+</body>
+</html>
